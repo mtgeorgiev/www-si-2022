@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Кирилица</title>
+  <link href="./styles/mystyle.css" rel="stylesheet" />
+</head>
+<body>
+    <form method="POST" action="./endpoint.php" id="test-form">
+        <label for="course-title"> Course Title </label>
+        <input type="text" id="course-title" name="title" />
+
+        <input type="email" name="pass[]" placeholder="Въведете имейл" />
+
+        <input type="date" name="my-date" />
+
+        <input type="color" name="color" />
+
+        <textarea name="big-text"></textarea>
+
+        Gender
+        <label> <input type="radio" name="gender1" value="M"> Male   </label>
+        <label> <input type="radio" name="gender1" value="F"> Female </label>
+
+        Gender
+        <label class="genders male-gender"> <input type="checkbox"name="gender2[]" value="M"> Male   </label>
+        <label class="genders"> <input type="checkbox" name="gender2[]" value="F"> Female </label>
+        <label> <input type="checkbox" name="gender2[]" value="A"> Извънземен </label>
+        <label> <input type="checkbox" name="gender2[]" value="R"> Произволен </label>
+
+        <input type="submit" value="Изпрати данните"/>
+        <button>Изпрати данните 2</button>
+    </form>
+    <div id="parent">
+      <div>1=edno</div>
+      <div>2=dve</div>
+      <div>
+        3=tri
+        <div>33333</div>
+      </div>
+    </div>
+</body>
+</html>

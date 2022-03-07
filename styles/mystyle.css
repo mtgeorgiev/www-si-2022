@@ -1,0 +1,31 @@
+
+@font-face {
+    font-family: si;
+    src: url(sansation_light.woff);
+}
+
+#test-form .genders {
+    color: blue;
+    font-family: si;
+}
+
+.male-gender.genders {
+    color: pink;
+}
+
+#parent div:first-child {
+    color: #4482a3;
+    font-weight: bold;
+    background-color: blanchedalmond;
+}
+
+#parent div:hover {
+    background-color: burlywood;
+}
+
+#test-form textarea[name="big-text1"] {
+    background-color: red;
+}
+
+
+
