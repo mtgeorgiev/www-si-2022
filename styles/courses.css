@@ -1,0 +1,52 @@
+body {
+    width: 1000px;
+    margin: 10px auto;
+    font-family: Arial;
+}
+
+#courses, #course-info {
+    display: inline-block;
+}
+
+#courses {
+    width: 400px;
+}
+
+#course-info {
+    width: 550px;
+    padding: 20px;
+}
+
+#courses .course {
+    padding: 5px;
+    border-bottom: solid 1px gray;
+    color: gray;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+#courses .course:first-child {
+    border-top: solid 1px gray;
+}
+
+#courses .course:hover {
+    background-color: #98bf0f;
+    color: white;
+}
+
+#course-info header {
+    font-weight: bold;
+    font-size: 30px;
+    color: #98bf0f;
+}
+
+header#top-bar {
+    position: fixed;
+    width: 1000px;
+    height: 40px;
+    top: 0;
+}
+
+#content-wrapper {
+    margin-top: 40px;
+}
