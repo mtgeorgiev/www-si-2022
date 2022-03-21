@@ -1,38 +1,18 @@
 <?php
 
-    class Course {
+    spl_autoload_register(function($className) {
+        $paths = [
+            "./libs",
+            "./libs2"
+        ];
 
-        private $name;
-
-        private $lecturer;
-
-        private $description;
-
-        private $type;
-
-        public function __construct(string $name, string $lecturer, string $description, string $type) {
-            $this->name = $name;
-            $this->lecturer = $lecturer;
-            $this->description = $description;
-            $this->type = $type;
+        foreach ($paths as $path) {
+            $classPath = "$path/$className.php";
+            if (file_exists($classPath)) {
+                require_once $classPath;
+            }
         }
-
-        public function getName(): string {
-            return $this->name;
-        }
-
-        public function getLecturer(): string {
-            return $this->lecturer;
-        }
-
-        public function getDescription(): string {
-            return $this->description;
-        }
-
-        public function getType(): string {
-            return $this->type;
-        }
-    }
+    });
 
     $courses = [
         new Course('Компютърна графика с WebGl', 'доц. П. Бойчев', 'Текст текст тест', 'Задължително избираем'),
