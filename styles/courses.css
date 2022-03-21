@@ -18,20 +18,12 @@ body {
 }
 
 #courses .course {
-    padding: 5px;
     border-bottom: solid 1px gray;
-    color: gray;
     text-transform: uppercase;
-    cursor: pointer;
 }
 
 #courses .course:first-child {
     border-top: solid 1px gray;
-}
-
-#courses .course:hover {
-    background-color: #98bf0f;
-    color: white;
 }
 
 #course-info header {
@@ -49,4 +41,16 @@ header#top-bar {
 
 #content-wrapper {
     margin-top: 40px;
+}
+
+.course a {
+    display: block;
+    padding: 5px;
+    color: gray;
+    text-decoration: none;
+}
+
+#courses .course a:hover, #courses .course.selected a{
+    background-color: #98bf0f;
+    color: white;
 }
