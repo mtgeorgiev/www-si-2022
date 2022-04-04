@@ -2,6 +2,8 @@
 
 class Course implements JsonSerializable {
 
+    private $id;
+
     private $name;
 
     private $lecturer;
@@ -10,7 +12,8 @@ class Course implements JsonSerializable {
 
     private $type;
 
-    public function __construct(string $name, string $lecturer, string $description, string $type) {
+    public function __construct(int $id, string $name, string $lecturer, string $description, string $type) {
+        $this->id = $id;
         $this->name = $name;
         $this->lecturer = $lecturer;
         $this->description = $description;
