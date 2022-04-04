@@ -1,6 +1,6 @@
 <?php
 
-class Course {
+class Course implements JsonSerializable {
 
     private $name;
 
@@ -31,5 +31,9 @@ class Course {
 
     public function getType(): string {
         return $this->type;
+    }
+
+    public function jsonSerialize(): array {
+        return get_object_vars($this);
     }
 }

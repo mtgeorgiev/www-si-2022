@@ -3,7 +3,6 @@
     spl_autoload_register(function($className) {
         $paths = [
             "./libs",
-            "./libs2"
         ];
 
         foreach ($paths as $path) {
@@ -31,6 +30,7 @@
         <meta charset="UTF-8" />
         <title>Курсове</title>
         <link href="./styles/courses.css" rel="stylesheet" />
+        <script src="./scripts/courses.js" defer></script>
     </head>
     <body>
         <header id="top-bar">
