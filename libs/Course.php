@@ -20,6 +20,10 @@ class Course implements JsonSerializable {
         $this->type = $type;
     }
 
+    public function getId(): int {
+        return $this->id;
+    }
+
     public function getName(): string {
         return $this->name;
     }
@@ -38,5 +42,9 @@ class Course implements JsonSerializable {
 
     public function jsonSerialize(): array {
         return get_object_vars($this);
+    }
+
+    public static function createFromAssoc(array $assocCourse): Course {
+        return new Course($assocCourse['id'], $assocCourse['name'], $assocCourse['lecturer'], $assocCourse['description'], $assocCourse['type']);
     }
 }
