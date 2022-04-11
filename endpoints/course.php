@@ -16,13 +16,6 @@ spl_autoload_register(function($className) {
 switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'GET': {
-
-        $courses = [
-            new Course(1, 'Компютърна графика с WebGl', 'доц. П. Бойчев', 'Текст текст тест', 'Задължително избираем'),
-            new Course(2, 'Програмиране на Go', 'доц. Непознатко', 'Текст текст тест', 'Задължително избираем'),
-            new Course(3, 'Програмиране на Ruby', 'доц. П. Бойчев', 'Друг текст', 'Свободно избираем'),
-            new Course(4, 'Agile', 'проф. Калинка Калоянова', 'Текст текст тест', 'Задължително избираем'),
-        ];
         
         $selectedCourseId = isset($_GET['id']) ? $_GET['id'] : null;
         
@@ -30,9 +23,25 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         if ($selectedCourseId) {
             // return the selected course
-            $response = $courses[$selectedCourseId];
+            $sql   = "SELECT * FROM `courses` WHERE id = " . $selectedCourseId;
+            $query = (new Db())->getConnection()->query($sql);
+            $dbRow = $query->fetch();
+
+            if ($dbRow) {
+                $response = Course::createFromAssoc($dbRow);
+            } else {
+                http_response_code(404);
+                $response = ["error" => "Course with id $selectedCourseId not found"];
+            }
         } else {
             // return all courses
+            $sql   = "SELECT * FROM `courses` ORDER BY id ASC";
+            $query = (new Db())->getConnection()->query($sql);
+
+            $courses = [];
+            while($dbRow = $query->fetch()) {
+                $courses[] = $dbRow;
+            }
             $response = $courses;
         }
 
