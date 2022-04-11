@@ -23,7 +23,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
 
         if ($selectedCourseId) {
             // return the selected course
-            $sql   = "SELECT * FROM `courses` WHERE id = " . $selectedCourseId;
+            $sql   = "SELECT * FROM `courses` WHERE id = " . $selectedCourseId; // we'll fix that the next time
             $query = (new Db())->getConnection()->query($sql);
             $dbRow = $query->fetch();
 
