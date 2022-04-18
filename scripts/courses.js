@@ -28,6 +28,15 @@ const displayCoursePage = course => {
     </article>`;
 
     document.getElementById('course-info').innerHTML = courseHTMLContent;
+
+    document.querySelectorAll('#courses .course a')
+        .forEach(element => {
+            if (element.getAttribute('id') == course.id) {
+                element.parentElement.setAttribute('class', 'course selected');
+            } else {
+                element.parentElement.setAttribute('class', 'course');
+            }
+        });
 }
 
 fetch('./endpoints/course.php')

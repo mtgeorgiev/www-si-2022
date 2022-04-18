@@ -1,11 +1,11 @@
 <?php
 
-class Db
-{
+class Db {
+
     private $connection;
 
-    public function __construct()
-    {
+    public function __construct() {
+
         $dbhost = "localhost";
         $dbName = "si2022_susi";
         $userName = "root";
@@ -15,11 +15,11 @@ class Db
             [
                 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             ]);
     }
 
-    public function getConnection()
-    {
+    public function getConnection() {
         return $this->connection;
     }
 }
