@@ -1,17 +1,8 @@
 <?php
 
-spl_autoload_register(function($className) {
-    $paths = [
-        "../libs",
-    ];
-
-    foreach ($paths as $path) {
-        $classPath = "$path/$className.php";
-        if (file_exists($classPath)) {
-            require_once $classPath;
-        }
-    }
-});
+// require_once "bootstrap.php";
+require_once '../libs/Bootstrap.php';
+Bootstrap::initApp();
 
 switch ($_SERVER['REQUEST_METHOD']) {
 
@@ -22,27 +13,9 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $response = null;
 
         if ($selectedCourseId) {
-            // return the selected course
-            $sql   = "SELECT * FROM `courses` WHERE id = " . $selectedCourseId; // we'll fix that the next time
-            $query = (new Db())->getConnection()->query($sql);
-            $dbRow = $query->fetch();
-
-            if ($dbRow) {
-                $response = Course::createFromAssoc($dbRow);
-            } else {
-                http_response_code(404);
-                $response = ["error" => "Course with id $selectedCourseId not found"];
-            }
+            $response = CourseEndpointHandler::getCourseById($selectedCourseId);
         } else {
-            // return all courses
-            $sql   = "SELECT * FROM `courses` ORDER BY id ASC";
-            $query = (new Db())->getConnection()->query($sql);
-
-            $courses = [];
-            while($dbRow = $query->fetch()) {
-                $courses[] = $dbRow;
-            }
-            $response = $courses;
+            $response = CourseEndpointHandler::getAllCourses();
         }
 
         echo json_encode($response, JSON_UNESCAPED_UNICODE);
