@@ -82,7 +82,7 @@ const submitLoginForm = event => {
         .then(result => {
             if (result.success) {
                 removeLoginFormElement();
-                // display message user ia logged / redirect to homepage
+                // display message user is logged / redirect to homepage
             } else {
                 // display error message
             }
