@@ -39,6 +39,61 @@ const displayCoursePage = course => {
         });
 }
 
+const removeLoginFormElement = () => {
+    const loginForm = document.getElementById("login-form");
+    if (loginForm) {
+        loginForm.parentElement.removeChild(loginForm);
+    }
+}
+
+const displayLoginForm = () => {
+
+    removeLoginFormElement();
+
+    const loginFormElement = document.createElement('div');
+    loginFormElement.innerHTML = `
+        <form id="login-form">
+            <input type="text" name="username" placeholder="Потребителско име" />
+            <input type="password" name="password" placeholder="Парола"/>
+            <input type="submit" value="Submit">
+        </form>`;
+
+    document.getElementById("content-wrapper").appendChild(loginFormElement);
+
+    document.getElementById("login-form").addEventListener("submit", submitLoginForm)
+}
+
+const submitLoginForm = event => {
+
+    event.preventDefault();
+
+    const form = event.target;
+
+    const body = {
+        'username': form.username.value,
+        'password': form.password.value
+    }
+
+    fetch('./endpoints/session.php', {
+            method: "POST",
+            body: JSON.stringify(body)
+        })
+        .then(response => response.json())
+        .then(result => {
+            if (result.success) {
+                removeLoginFormElement();
+                // display message user is logged / redirect to homepage
+            } else {
+                // display error message
+            }
+        });
+
+}
+
 fetch('./endpoints/course.php')
      .then(response => response.json())
      .then(displayCoursesMenu);
+
+
+     document.getElementById("login").addEventListener('click', displayLoginForm);
+
