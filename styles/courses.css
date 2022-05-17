@@ -65,3 +65,12 @@ header#top-bar {
     border-radius: 10px;
     border: solid 2px #ae3111;
 }
+
+.error-message {
+    background-color: #ee3b0f;
+    color: white;
+}
+
+#not-logged-buttons, #logged-buttons {
+    display: none;
+}

@@ -1,8 +1,12 @@
 <?php
 
+session_start();
+
 // require_once "bootstrap.php";
 require_once '../libs/Bootstrap.php';
 Bootstrap::initApp();
+
+Session::verifyUserIsLogged();
 
 switch ($_SERVER['REQUEST_METHOD']) {
 
