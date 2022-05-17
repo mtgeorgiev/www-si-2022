@@ -38,6 +38,9 @@ class Bootstrap {
             } elseif ($exception instanceof NotFoundException) {
                 http_response_code(404);
                 $response = ['error' => $exception->getMessage()];
+            } elseif ($exception instanceof AccessDeniedException) {
+                http_response_code(403);
+                $response = ['error' => "Access denied"];
             } else {
                 http_response_code(500);
                 error_log($exception->getMessage());

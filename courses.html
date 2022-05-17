@@ -8,8 +8,14 @@
     </head>
     <body>
         <header id="top-bar">
-            <button id="login">Вход</button>
-            <button>Регистрация</button>
+            <div id="not-logged-buttons">
+                <button id="login">Вход</button>
+                <button>Регистрация</button>
+            </div>
+            <div id="logged-buttons">
+                Здравей, <span id="username-greeting"></span>
+                <button id="logout">Излез</button>
+            </div>
         </header>
         <div id="content-wrapper">
             <nav id="courses">

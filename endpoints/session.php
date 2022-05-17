@@ -8,8 +8,18 @@ Bootstrap::initApp();
 switch ($_SERVER['REQUEST_METHOD']) {
 
     case 'GET': {
-        $logged = isset($_SESSION['user_id']);
-        echo json_encode(["logged" => $logged, "session" => $_SESSION]);
+
+        try {
+            $userInfo = Session::verifyUserIsLogged();
+            $result = [
+                'logged' => true,
+                'session' => $userInfo,
+            ];
+        } catch (AccessDeniedException $e) {
+            $result = ['logged' => false];
+        }
+
+        echo json_encode($result);
         break;
     }
     case 'POST': {
@@ -20,18 +30,12 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $username = $requestBody['username'];
         $password = $requestBody['password'];
 
-        // check if username/password is correct
-        $userId = 5;
-
-        $_SESSION['user_id'] = $userId;
-        $_SESSION['user_name'] = $username;
-
-        echo json_encode(["success" => true]);
+        echo json_encode(["success" => Session::logUser($username, $password)]);
 
         break;
     }
     case 'DELETE': {
-        session_destroy();
+        Session::logout();
         echo json_encode(["success" => true]);
     }
 
